@@ -5,7 +5,7 @@
       "default": true
     }
   ],
-  "name": "case study n26",
+  "name": "case-study-n26",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "55.0"
