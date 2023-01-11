@@ -2,53 +2,52 @@
     <lightning-card  title={label.contact_product_info_title}>
         <lightning-layout if:true={selectedProduct} multiple-rows>
             <lightning-layout-item flexibility="auto" padding="horizontal-small" size="12" small-device-size="12" medium-device-size="6" large-device-size="6" class="product-item">
-                <label class="slds-form-element__label slds-no-flex" for="input-114">{label.product}</label>
+                <label class="slds-form-element__label slds-no-flex">{label.product}</label>
                 <lightning-badge label={selectedProduct.Name} icon-name="custom:custom40" class={selectedProduct.nameClass}></lightning-badge>
             </lightning-layout-item>
 
             <lightning-layout-item flexibility="auto" padding="horizontal-small" size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
-                <lightning-input
-                    type="text"
-                    label={label.home_country}
-                    value={selectedProduct.Available_Country__c}
-                    readonly>
-                </lightning-input>
+                <label class="slds-form-element__label slds-no-flex">{label.home_country}</label>
+                <lightning-formatted-text
+                    value={selectedProduct.Available_Country__c}>
+                </lightning-formatted-text>
             </lightning-layout-item>
 
             <lightning-layout-item flexibility="auto" padding="horizontal-small" size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
-                <lightning-input
-                    type="number"
-                    formatter="currency"
-                    label={label.cost_per_calendar_month}
+                <label class="slds-form-element__label slds-no-flex">{label.cost_per_calendar_month}</label>
+                <lightning-formatted-number
                     value={selectedProduct.Calendar_Month_Cost__c}
-                    readonly>
-                </lightning-input>
+                    format-style="currency"
+                    currency-code={selectedProduct.CurrencyIsoCode}
+                    currency-display-as="symbol">
+                </lightning-formatted-number>
             </lightning-layout-item>
 
             <lightning-layout-item flexibility="auto" padding="horizontal-small" size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
-                <lightning-input
-                    type="number"
-                    formatter="percent"
-                    label={label.atm_fee_in_other_currencies}
+                <label class="slds-form-element__label slds-no-flex">{label.atm_fee_in_other_currencies}</label>
+                <lightning-formatted-number
                     value={selectedProduct.Other_Currency_ATM_Fee__c}
-                    readonly>
-                </lightning-input>
+                    format-style="decimal"
+                    currency-code={selectedProduct.CurrencyIsoCode}
+                    minimum-fraction-digits="2"
+                    class="percent-field">
+                </lightning-formatted-number>
             </lightning-layout-item>
 
             <lightning-layout-item flexibility="auto" padding="horizontal-small" size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
-                <lightning-input
-                    type="number"
-                    formatter="currency"
-                    label={label.card_replacement_cost}
+                <label class="slds-form-element__label slds-no-flex">{label.card_replacement_cost}</label>
+                <lightning-formatted-number
                     value={selectedProduct.Card_Replacement_Cost__c}
-                    readonly>
-                </lightning-input>
+                    format-style="currency"
+                    currency-code={selectedProduct.CurrencyIsoCode}
+                    currency-display-as="symbol">
+                </lightning-formatted-number>
             </lightning-layout-item>
         </lightning-layout>
 
         <lightning-layout if:true={showNoProductFoundMsg} horizontal-align="center" vertical-align="center">
             <lightning-layout-item flexibility="auto" padding="horizontal-small" size="12">
-                <span>{label.lwc_contact_product_info}</span>
+                <span>{label.no_product_found}</span>
             </lightning-layout-item>
         </lightning-layout>
     </lightning-card>

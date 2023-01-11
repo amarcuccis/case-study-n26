@@ -30,7 +30,8 @@ public with sharing class ContactProductInfo {
                     toLabel(Available_Country__c),
                     Calendar_Month_Cost__c,
                     Other_Currency_ATM_Fee__c,
-                    Card_Replacement_Cost__c
+                    Card_Replacement_Cost__c,
+                    CurrencyIsoCode
                 FROM Product2
                 WHERE IsActive = true
                     AND Name = :currentCase[0].Contact.Product__c

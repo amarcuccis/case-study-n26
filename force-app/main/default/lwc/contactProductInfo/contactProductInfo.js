@@ -6,12 +6,12 @@ import cost_per_calendar_month from '@salesforce/label/c.cost_per_calendar_month
 import home_country from '@salesforce/label/c.home_country';
 import product from '@salesforce/label/c.product';
 import atm_fee_in_other_currencies from '@salesforce/label/c.atm_fee_in_other_currencies';
-import lwc_contact_product_info from '@salesforce/label/c.lwc_contact_product_info';
+import no_product_found from '@salesforce/label/c.no_product_found';
 
 export default class ContactProductInfo extends LightningElement {
     label = { 
         card_replacement_cost, contact_product_info_title, cost_per_calendar_month,
-        home_country, product, atm_fee_in_other_currencies, lwc_contact_product_info };
+        home_country, product, atm_fee_in_other_currencies, no_product_found };
     @api recordId;
 
     /** Front Attributes */

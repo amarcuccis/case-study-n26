@@ -1,12 +1,18 @@
-/** Used to replace standard styling on SLDS in the entire LWC */
-:host {
-    --sds-c-input-shadow-focus: none;
-}
-
-/** --sds used to replace standard styling on SLDS in an specific element */
-.product-item {
+lightning-layout-item {
     display: flex;
     flex-direction: column;
+    margin-bottom: 16px;
+}
+
+/** Percent symbol added via CSS as using format-style="percent" will show the amount multiplied by 100,
+ *  and fee amounts are stored as decimal
+*/
+.percent-field::after {
+    content: '%';
+}
+
+/** Used to replace standard styling on SLDS in an specific element */
+.product-item {
     --sds-c-badge-text-color: #fff;
     --sds-c-badge-color-background: #0076d3;
     --slds-c-badge-icon-color-foreground: #fff;
