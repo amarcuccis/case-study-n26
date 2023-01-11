@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomLabels xmlns="http://soap.sforce.com/2006/04/metadata">
+    <labels>
+        <fullName>atm_fee_in_other_currencies</fullName>
+        <categories>lwc_contact_product_info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>atm fee in other currencies</shortDescription>
+        <value>ATM Fee in other currencies</value>
+    </labels>
+    <labels>
+        <fullName>card_replacement_cost</fullName>
+        <categories>lwc_contact_product_info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>card replacement cost</shortDescription>
+        <value>Card Replacement Cost</value>
+    </labels>
+    <labels>
+        <fullName>contact_product_info_title</fullName>
+        <categories>lwc_contact_product_info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>contact product info title</shortDescription>
+        <value>Contact Product Information</value>
+    </labels>
+    <labels>
+        <fullName>cost_per_calendar_month</fullName>
+        <categories>lwc_contact_product_info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>cost per calendar month</shortDescription>
+        <value>Cost per Calendar Month</value>
+    </labels>
+    <labels>
+        <fullName>home_country</fullName>
+        <categories>lwc_contact_product_info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>home country</shortDescription>
+        <value>Home Country</value>
+    </labels>
+    <labels>
+        <fullName>no_product_found</fullName>
+        <categories>lwc_contact_product_info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>no product found</shortDescription>
+        <value>No product found. Check if the Contact have Home Country and Product fields fulfilled.</value>
+    </labels>
+    <labels>
+        <fullName>product</fullName>
+        <categories>lwc_contact_product_info</categories>
+        <language>en_US</language>
+        <protected>true</protected>
+        <shortDescription>product</shortDescription>
+        <value>Product</value>
+    </labels>
+</CustomLabels>
