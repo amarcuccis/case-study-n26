@@ -1,0 +1,55 @@
+<template>
+    <lightning-card  title={label.contact_product_info_title}>
+        <lightning-layout if:true={selectedProduct} multiple-rows>
+            <lightning-layout-item flexibility="auto" padding="horizontal-small" size="12" small-device-size="12" medium-device-size="6" large-device-size="6" class="product-item">
+                <label class="slds-form-element__label slds-no-flex" for="input-114">{label.product}</label>
+                <lightning-badge label={selectedProduct.Name} icon-name="custom:custom40" class={selectedProduct.nameClass}></lightning-badge>
+            </lightning-layout-item>
+
+            <lightning-layout-item flexibility="auto" padding="horizontal-small" size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
+                <lightning-input
+                    type="text"
+                    label={label.home_country}
+                    value={selectedProduct.Available_Country__c}
+                    readonly>
+                </lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item flexibility="auto" padding="horizontal-small" size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
+                <lightning-input
+                    type="number"
+                    formatter="currency"
+                    label={label.cost_per_calendar_month}
+                    value={selectedProduct.Calendar_Month_Cost__c}
+                    readonly>
+                </lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item flexibility="auto" padding="horizontal-small" size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
+                <lightning-input
+                    type="number"
+                    formatter="percent"
+                    label={label.atm_fee_in_other_currencies}
+                    value={selectedProduct.Other_Currency_ATM_Fee__c}
+                    readonly>
+                </lightning-input>
+            </lightning-layout-item>
+
+            <lightning-layout-item flexibility="auto" padding="horizontal-small" size="12" small-device-size="12" medium-device-size="6" large-device-size="6">
+                <lightning-input
+                    type="number"
+                    formatter="currency"
+                    label={label.card_replacement_cost}
+                    value={selectedProduct.Card_Replacement_Cost__c}
+                    readonly>
+                </lightning-input>
+            </lightning-layout-item>
+        </lightning-layout>
+
+        <lightning-layout if:true={showNoProductFoundMsg} horizontal-align="center" vertical-align="center">
+            <lightning-layout-item flexibility="auto" padding="horizontal-small" size="12">
+                <span>{label.lwc_contact_product_info}</span>
+            </lightning-layout-item>
+        </lightning-layout>
+    </lightning-card>
+</template>

@@ -1,0 +1,123 @@
+/**
+ * @description       : Apex Test class for ContactProductInfo
+ * @last modified on  : 01-10-2023
+**/
+@IsTest
+private with sharing class ContactProductInfoTest {
+
+    @TestSetup
+    static void makeData() {
+        Account testAccount = new Account(
+            Name = 'N26 Test Customer'
+        );
+        insert testAccount;
+
+        Contact testContact = new Contact(
+            LastName = 'Test Contact',
+            AccountId = testAccount.Id,
+            Home_Country__c = 'ES',
+            Product__c = 'Standard'
+        );
+        insert testContact;
+
+        Case caseContact = new Case(
+            ContactId = testContact.Id
+        );
+        insert caseContact;
+
+        Product2 standardESProd = new Product2(
+            Name = 'Standard',
+            ProductCode = 'STD-ES',
+            Available_Country__c = 'ES',
+            Calendar_Month_Cost__c = 0,
+            Other_Currency_ATM_Fee__c = 1.70,
+            Card_Replacement_Cost__c = 6,
+            CurrencyIsoCode = 'EUR',
+            IsActive = true
+        );
+
+        Product2 blackESProd = new Product2(
+            Name = 'Black',
+            ProductCode = 'BLK-ES',
+            Available_Country__c = 'ES',
+            Calendar_Month_Cost__c = 9.90,
+            Other_Currency_ATM_Fee__c = 0,
+            Card_Replacement_Cost__c = 6,
+            CurrencyIsoCode = 'EUR',
+            IsActive = true
+        );
+
+        Product2 metalESProd = new Product2(
+            Name = 'Metal',
+            ProductCode = 'MTL-ES',
+            Available_Country__c = 'ES',
+            Calendar_Month_Cost__c = 16.9,
+            Other_Currency_ATM_Fee__c = 0,
+            Card_Replacement_Cost__c = 45,
+            CurrencyIsoCode = 'EUR',
+            IsActive = true
+        );
+        insert new List<Product2>{standardESProd, blackESProd, metalESProd};
+    }
+    
+    @IsTest
+    private static void testContactProductInfoIsRetrievedWhenProductTypeAndCountryIsFullfilledOnContact() {
+        Case testCase = [SELECT Id FROM Case LIMIT 1];
+
+        Test.startTest();
+        Product2 selectedProduct = ContactProductInfo.getSelectedProduct(testCase.Id);
+        Test.stopTest();
+        
+        System.assertNotEquals(null, selectedProduct, 'selected product shoudlnt be null');
+        System.assertEquals(selectedProduct.Calendar_Month_Cost__c, 0, 'retrieved selected product info is wrong');
+        System.assertEquals(selectedProduct.Other_Currency_ATM_Fee__c, 1.70, 'retrieved selected product info is wrong');
+        System.assertEquals(selectedProduct.Card_Replacement_Cost__c, 6, 'retrieved selected product info is wrong');
+    }
+
+    @IsTest
+    private static void testContactProductInfoIsNotRetrievedWhenProductTypeOrCountryIsNotFullfilledOnContact() {
+        Case testCase = [SELECT Id, ContactId FROM Case LIMIT 1];
+
+        Contact testContact = new Contact(
+            Id = testCase.ContactId,
+            Home_Country__c = null
+        );
+        update testContact;
+
+        Test.startTest();
+        Product2 selectedProduct = ContactProductInfo.getSelectedProduct(testCase.Id);
+        Test.stopTest();
+
+        System.assertEquals(null, selectedProduct, 'selected product was found when shouldnt');
+    }
+
+    @IsTest
+    private static void testContactProductInfoIsNotRetrievedWhenProductTypeAndCountryDoesntMatchAnExistentActiveProduct() {
+        Case testCase = [SELECT Id, ContactId FROM Case LIMIT 1];
+
+        Contact testContact = new Contact(
+            Id = testCase.ContactId,
+            Home_Country__c = 'FR'
+        );
+        update testContact;
+
+        Test.startTest();
+        Product2 selectedProduct = ContactProductInfo.getSelectedProduct(testContact.Id);
+        Test.stopTest();
+
+        System.assertEquals(null, selectedProduct, 'selected product was found when shouldnt');
+    }
+
+    @IsTest
+    private static void testContactProductInfoThrowExceptionWhenInvalidContactIdIsPassed() {
+        Test.startTest();
+        try {
+            ContactProductInfo.getSelectedProduct('INVALID');
+        } catch (Exception e) {
+            System.assertEquals('System.StringException', e.getTypeName(), 'An string exception should be thrown: ' + e.getMessage());
+            return;
+        }
+        System.assert(false, 'first exception should be thrown so this assert shouldnt be fired');
+        Test.stopTest();
+    }
+}

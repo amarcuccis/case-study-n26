@@ -1,0 +1,31 @@
+/** Used to replace standard styling on SLDS in the entire LWC */
+:host {
+    --sds-c-input-shadow-focus: none;
+}
+
+/** --sds used to replace standard styling on SLDS in an specific element */
+.product-item {
+    display: flex;
+    flex-direction: column;
+    --sds-c-badge-text-color: #fff;
+    --sds-c-badge-color-background: #0076d3;
+    --slds-c-badge-icon-color-foreground: #fff;
+}
+
+.product-item .slds-badge {
+    width: fit-content;
+    --sds-c-badge-text-color: #fff;
+    --slds-c-badge-icon-color-foreground: #fff;
+}
+
+.slds-badge.standard {
+    --sds-c-badge-color-background: #35a18b;
+}
+
+.slds-badge.black {
+    --sds-c-badge-color-background: #494949;
+}
+
+.slds-badge.metal {
+    --sds-c-badge-color-background: #deb6ab;
+}
